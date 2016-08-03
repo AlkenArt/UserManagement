@@ -1,0 +1,28 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://schemas.aptilo.com/account/provisioning">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prov:createAccountRequest accountType="Aptilo-WiFi-Account-DB">
+         <prov:account reference="Create Example">
+            <prov:parameters>
+               <prov:parameter name="User-Name" value="46705550001" />
+               <prov:parameter name="Password" value="[ABCDEFGHIJKLMNOPQRSTUVXYZ]{8}" random="true" />
+               <prov:parameter name="Group" value="group" />
+               <prov:parameter name="Account-State" value="Active" />
+               <prov:parameter name="Email" value="a@b.c" />
+               <prov:parameter name="First-Access" value="0" />
+               <prov:parameter name="Last-Access" value="0" />
+               <prov:parameter name="Valid-From" value="0" />
+               <prov:parameter name="Valid-Until" value="1391083871" />
+               <prov:parameter name="Purge-Delay-Time" value="3600" />
+               <prov:group name="User-Data">
+                  <prov:parameter name="legs" value="2" />
+                  <prov:parameter name="fingers" value="10" />
+               </prov:group>
+               <prov:group name="Service-Profiles">
+                  <prov:parameter name="Web-Access-SP" value="true" />
+               </prov:group>
+            </prov:parameters>
+         </prov:account>
+      </prov:createAccountRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

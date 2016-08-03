@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Version: 1.0
+
+     This document is the confidential and proprietary product of Aptilo
+     Networks. Any unauthorized use, reproduction or transfer of this document
+     is strictly prohibited. Copyright Aptilo Networks AB, Stockholm, Sweden.
+     All rights reserved.
+  -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://wsdls.aptilo.com/account/provisioning/impl"
+	xmlns:api="http://schemas.aptilo.com/account/provisioning/impl" xmlns:aap="http://wsdls.aptilo.com/account/provisioning" xmlns:tns="http://wsdls.aptilo.com/account/provisioning/impl"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<wsdl:import location="abstract/accountProvisioning.wsdl" namespace="http://wsdls.aptilo.com/account/provisioning" />
+
+	<wsdl:binding name="SoapAccountProvisioning" type="aap:accountProvisioning">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getAccount">
+			<soap:operation soapAction="" />
+			<wsdl:input name="getAccountRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAccountResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteAccount">
+			<soap:operation soapAction="" />
+			<wsdl:input name="deleteAccountRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteAccountResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createAccount">
+			<soap:operation soapAction="" />
+			<wsdl:input name="createAccountRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createAccountResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAccount">
+			<soap:operation soapAction="" />
+			<wsdl:input name="updateAccountRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateAccountResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="accountProvisioningService">
+		<wsdl:port binding="tns:SoapAccountProvisioning" name="SoapAccountProvisioning">
+			<soap:address location="http://10.19.35.230:8443/scc/account" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+      table.cell-highlight > tbody > tr:hover {
+        opacity: 0.5; 
+        -webkit-transition: opacity 0.15s linear;
+           -moz-transition: opacity 0.15s linear;
+             -o-transition: opacity 0.15s linear;
+                transition: opacity 0.15s linear;
+      }
+    </style>
+</head>
+<body>
+	<div ng-include="header"></div>
+	<section id="features">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="he2  section-title text-center wow fadeInDown">
+					Access Code <span>Management</span>
+				</h2>
+			</div>
+			<div class="row valign" style="margin-bottom: 40px;">
+				<div class="col-sm-12" ng-controller="AccessCodesCtrl">
+					<div class="row">
+						<div class="col-sm-3" style="padding-bottom: 10px;">
+							<select name="duration" class="form-control" ng-model="realm" ng-change="filterByRealm(realm)">
+								<option value="all">Filter By Group</option>
+								<option ng-repeat="realm in realms" value="{{realm.groupName}}">{{realm.groupDesc}}</option>
+							</select>
+						</div>
+						<div class="col-sm-3" style="padding-bottom: 10px;">
+							<form>
+							    <div class="form-group">
+							      <div class="input-group">
+							        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+							        <input type="text" class="form-control" placeholder="Search" ng-model="searchText" ng-keyup="searchByText(searchText)" style="margin-bottom: 0px;">
+							      </div>      
+							    </div>
+							  </form>
+						</div>
+						<div class="hidden-xs col-sm-3" align="right" style="padding-bottom: 10px;">
+						View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+							<option>5</option>
+							<option>10</option>
+							<option>20</option>
+							<option>30</option>
+							<option>40</option>
+							<option>50</option></select> Entries.
+						</div>
+						<div class="visible-xs col-xs-8 text-left" style="padding-bottom: 10px;">
+						View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)">
+							<option>5</option>
+							<option>10</option>
+							<option>20</option>
+							<option>30</option>
+							<option>40</option>
+							<option>50</option></select> Entries.
+						</div>
+						<div class="hidden-xs col-sm-3" align="right" style="padding-bottom: 10px;">
+							<button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Refresh" ng-click="refresh()" style="border-radius: 0px; color: #fff;"><i class="fa fa-refresh" style="color: #F86F0A;"></i></button>
+						</div>
+						<div class="visible-xs col-xs-4 text-right" style="padding-bottom: 10px;">
+							<button class="btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Refresh" ng-click="refresh()" style="border-radius: 0px; color: #fff;"><i class="fa fa-refresh" style="color: #F86F0A;"></i></button>
+						</div>
+					</div>
+					<div class="box table-responsive" style="background-color: #fff;">
+						<table class="table table-striped cell-highlight bordered"
+							style="border: 1px solid #ccc;"">
+							<thead class="thead" style="background: -webkit-linear-gradient(top, #FAFAFA 0, #E9E9E9 100%)">
+								<tr>
+									<th>
+									  <span class="badge" style="background-color: #F86F0A;">{{filteredAccessCodes.length}}</span>
+									  <a ng-click="order('accessCode', sortReverse)">
+							            Access Code
+							            <span ng-show="sortType=='accessCode'&&!sortReverse" class="fa fa-caret-down"></span>
+        								<span ng-show="sortType=='accessCode'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+							        </th>
+									<th>
+									  <a ng-click="order('realm', sortReverse)">
+									  	Group
+							            <span ng-show="sortType=='realm'&&!sortReverse" class="fa fa-caret-down"></span>
+							            <span ng-show="sortType=='realm'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+							        </th>
+									<th>
+									  <a ng-click="order('startDate', sortReverse)">
+									  	Valid-From
+							            <span ng-show="sortType=='startDate'&&!sortReverse" class="fa fa-caret-down"></span>
+							            <span ng-show="sortType=='startDate'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+									</th>
+									<th>
+									  <a ng-click="order('endDate', sortReverse)">
+									  	Valid-Until
+							            <span ng-show="sortType=='endDate'&&!sortReverse" class="fa fa-caret-down"></span>
+							            <span ng-show="sortType=='endDate'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+							        </th>
+									<th>
+									  <a ng-click="order('serviceProfile', sortReverse)">
+									  	Duration
+							            <span ng-show="sortType=='serviceProfile'&&!sortReverse" class="fa fa-caret-down"></span>
+							            <span ng-show="sortType=='serviceProfile'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+							        </th>
+							        <th>
+									  <a ng-click="order('accountState', sortReverse)">
+									  	Status
+							            <span ng-show="sortType=='accountState'&&!sortReverse" class="fa fa-caret-down"></span>
+							            <span ng-show="sortType=='accountState'&&sortReverse" class="fa fa-caret-up"></span>
+							          </a>
+							        </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="accessCode in filteredAccessCodes.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" context="context">
+									<td>{{accessCode.accessCode}}</td>
+									<td>{{accessCode.realm}}</td>
+									<td>{{accessCode.startDate}}</td>
+									<td>{{accessCode.endDate}}</td>
+									<td>{{accessCode.serviceProfile}}</td>
+									<td>
+										<span ng-if="accessCode.accountState=='Active'" style="color: green;">{{accessCode.accountState}}</span>
+										<span ng-if="accessCode.accountState=='Inactive'" style="color: red;">{{accessCode.accountState}}</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul id="context" class="dropdown-menu">
+					      <li><a ng-click="edit()">Edit</a></li>
+					      <li><a ng-click="deleteAC()">Delete</a></li>
+					    </ul>
+						<div class="text-center">
+						<uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></uib-pagination>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /#features -->
+	<span us-spinner="{radius:30, width:8, length: 16}"></span>
+	<div ng-include="footer"></div>
+</body>
+</html>

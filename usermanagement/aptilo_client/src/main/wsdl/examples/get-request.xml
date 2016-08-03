@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://schemas.aptilo.com/account/provisioning">
+   <soapenv:Header/>
+   <soapenv:Body>
+     <prov:getAccountRequest accountType="Aptilo-WiFi-Account-DB">
+       <prov:queries>
+         <prov:query reference="Get 1" limit="20">
+           <prov:id>
+             <prov:parameter name="Group" value="somegroup" />
+           </prov:id>
+           <prov:parameters>
+             <prov:parameter name="Account-State" value="Active" />
+           </prov:parameters>
+         </prov:query>
+       </prov:queries>
+     </prov:getAccountRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

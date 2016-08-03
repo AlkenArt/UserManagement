@@ -1,0 +1,23 @@
+{"durationsWithServices":
+	[{
+		"name":"30 Minutes",
+		"service":"Session-30-minutes"
+	},
+	{
+		"name":"12 Hour",
+		"service":"Session-12-hours"
+	},
+	{
+		"name":"24 Hour",
+		"service":"Session-24-hours"
+	},
+	{
+		"name":"7 Days",
+		"service":"Session-7-days"
+	},
+	{
+		"name":"1 Month",
+		"service":"Session-30-days"
+	}
+	]
+}

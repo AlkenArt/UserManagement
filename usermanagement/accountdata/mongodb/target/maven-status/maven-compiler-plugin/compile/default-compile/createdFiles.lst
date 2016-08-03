@@ -1,0 +1,4 @@
+com\alkenarts\usermanagement\account\model\Group.class
+com\alkenarts\usermanagement\account\model\User.class
+com\alkenarts\usermanagement\account\dao\UserRepo.class
+com\alkenarts\usermanagement\account\dao\GroupRepo.class

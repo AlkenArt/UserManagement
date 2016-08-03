@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="css/ng-input-custom.css" />
+<link rel="stylesheet" href="css/ng-tags-input.min.css" />
+
+<div ng-controller="addGroupCtrl">
+	<form role="form" name="form" >
+		<div ng-show = "addGroupNot">
+			<h4 style="color: green;">Group <span>{{groupName}}</span> has been added successfully</h4>
+			<h4 align="justify">
+			The following user(s) do not exist in the system, and is not associated with the group <span>{{groupName}}</span></h4>
+			<h4 ng-repeat="invalidUser in invalidUserList"><span>{{invalidUser}}</span></h4>
+			<div class="text-center"><button type="button" class="btn btn-warning"
+				style="margin-top: 20px; color: #fff; margin: auto;"
+				ng-click="closeAddGroupModal()">Close</button></div>
+		</div>
+		<div ng-show = "!addGroupNot">
+			<h4 ng-show="addGroupError" style="color: red;">{{addGroupResult}}</h4>
+			<div class="form-group">
+				<label for="email">Group Name*:</label> <input type="text"
+					class="form-control"  name="groupName"
+					Placeholder="Enter Group Name" ng-model="groupName" required />
+				<div></div>
+			</div>
+			<div class="form-group">
+				<label for="email">Description*:</label> <input 
+					name="description" type="text" ng-model="groupDesc"
+					class="form-control" placeholder="Description" required>
+			</div>
+			<div class="form-group">
+				<label for="email">Select Default Managers:</label>
+				<div>
+					<tags-input ng-model="groupUser" display-property="fieldName"  
+						placeholder="Enter User" replace-spaces-with-dashes="true" >
+					<auto-complete source="loadUserlist($query)" min-length="2"
+						load-on-focus="true" load-on-empty="true" max-results-to-show="32"
+						template="my-custom-template" ></auto-complete> </tags-input>
+
+					<script type="text/ng-template" id="my-custom-template">
+							<div>
+     					 <div class="right-panel">
+        				<span ng-bind-html="$highlight($getDisplayText())"></span>
+       						<span >({{data.userId}})</span>
+      					</div>
+							</div>
+   					 </script>
+				</div>
+			</div>
+			<div class="form-group" style="text-align:center !important;">
+				<button type="submit" class="btn btn-default"
+					style="margin-top: 20px; background: #2caab3; color: #fff; margin: auto;"
+					ng-click="addGroup(groupName,groupDesc, groupUser)">Add</button>
+				<button type="button" class="btn btn-warning"
+				style="margin-top: 20px; color: #fff; margin: auto;"
+				ng-click="closeAddGroupModal()">Cancel</button>
+			</div>
+		</div>
+	</form>
+	</div>

@@ -1,0 +1,39 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Access Code Management System</title>
+	<!-- core CSS -->
+    <link href="css/main.css" rel="stylesheet">
+</head><!--/head-->
+
+<body id="home">
+    <header id="header">
+        <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-spy="scroll" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="images/arris.png" alt="logo"></a>
+                </div>
+				
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="scroll"><a ng-click="click('/accessCodes')"><span style="color: #000; font-size: 16px;"><i class="fa fa-home"></i> Home</span></a></li>
+                        <li class="scroll" ng-if="adminAccess==true"><a ng-click="click('/admin')"><span style="color: #000; font-size: 16px;"><i class="fa fa-user"></i> Admin</span></a></li>
+                        <li class="scroll"><a ng-click="click('/createAC')"><span style="color: #000; font-size: 16px;"><i class="fa fa-briefcase"></i> Create Voucher</span></a></li>
+                        <li class="scroll"><a ng-click="click('/reports')"><span style="color: #000; font-size: 16px;"><i class="fa fa-book"></i> Reports</span></a></li>
+                        <li class="scroll"><a ng-click="click('/help')"><span style="color: #000; font-size: 16px;"><i class="fa fa-question-circle"></i> Help</span></a></li>
+                        <li class="scroll"><a href="logout"><span style="color: #000; font-size: 16px;"><i class="fa fa-sign-out"></i> Log Out</span></a></li>
+                        <li class="scroll"><a><span data-toggle="tooltip" data-placement="top" title="{{currentUser.userId}}" id="ellipsis">{{currentUser.userId}}</span></a></li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+    </header><!--/header-->
+</body>

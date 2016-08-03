@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://schemas.aptilo.com/account/provisioning">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prov:updateAccountRequest accountType="Aptilo-WiFi-Account-DB">
+         <prov:account reference="Update 1">
+            <prov:id>
+               <prov:parameter name="User-Name" value="46705550001" />
+            </prov:id>
+            <prov:parameters>
+               <prov:parameter operation="update" name="Email" value="d@e.f" />
+            </prov:parameters>
+            <prov:group name="User-Data">
+               <prov:parameter operation="delete" name="junk" />
+               <prov:parameter operation="add" name="height" value="medium" />
+               <prov:parameter operation="update" name="weight" value="average" />
+            </prov:group>
+            <prov:group name="Service-Profiles">
+               <prov:parameter operation="delete"  name="Web-Access-SP" value="true" />
+               <prov:parameter operation="add"  name="Web-Redirect-SP" value="true" />
+            </prov:group>
+         </prov:account>
+      </prov:updateAccountRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

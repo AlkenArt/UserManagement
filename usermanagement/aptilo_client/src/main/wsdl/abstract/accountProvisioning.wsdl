@@ -1,0 +1,53 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://wsdls.aptilo.com/account/provisioning"
+	xmlns:aap="http://schemas.aptilo.com/account/provisioning" xmlns:tns="http://wsdls.aptilo.com/account/provisioning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://schemas.aptilo.com/account/provisioning" schemaLocation="accountProvisioning.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="getAccountRequest">
+		<wsdl:part element="aap:getAccountRequest" name="getAccountRequest" />
+	</wsdl:message>
+	<wsdl:message name="deleteAccountResponse">
+		<wsdl:part element="aap:deleteAccountResponse" name="deleteAccountResponse" />
+	</wsdl:message>
+	<wsdl:message name="createAccountResponse">
+		<wsdl:part element="aap:createAccountResponse" name="createAccountResponse" />
+	</wsdl:message>
+	<wsdl:message name="getAccountResponse">
+		<wsdl:part element="aap:getAccountResponse" name="getAccountResponse" />
+	</wsdl:message>
+	<wsdl:message name="updateAccountRequest">
+		<wsdl:part element="aap:updateAccountRequest" name="updateAccountRequest" />
+	</wsdl:message>
+	<wsdl:message name="deleteAccountRequest">
+		<wsdl:part element="aap:deleteAccountRequest" name="deleteAccountRequest" />
+	</wsdl:message>
+	<wsdl:message name="updateAccountResponse">
+		<wsdl:part element="aap:updateAccountResponse" name="updateAccountResponse" />
+	</wsdl:message>
+	<wsdl:message name="createAccountRequest">
+		<wsdl:part element="aap:createAccountRequest" name="createAccountRequest" />
+	</wsdl:message>
+
+	<wsdl:portType name="accountProvisioning">
+		<wsdl:operation name="getAccount">
+			<wsdl:input message="tns:getAccountRequest" name="getAccountRequest" />
+			<wsdl:output message="tns:getAccountResponse" name="getAccountResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="deleteAccount">
+			<wsdl:input message="tns:deleteAccountRequest" name="deleteAccountRequest" />
+			<wsdl:output message="tns:deleteAccountResponse" name="deleteAccountResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="createAccount">
+			<wsdl:input message="tns:createAccountRequest" name="createAccountRequest" />
+			<wsdl:output message="tns:createAccountResponse" name="createAccountResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="updateAccount">
+			<wsdl:input message="tns:updateAccountRequest" name="updateAccountRequest" />
+			<wsdl:output message="tns:updateAccountResponse" name="updateAccountResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>

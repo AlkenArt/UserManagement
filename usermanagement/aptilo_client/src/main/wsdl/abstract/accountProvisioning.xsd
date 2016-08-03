@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:apc="http://schemas.aptilo.com/common" xmlns:tns="http://schemas.aptilo.com/account/provisioning" targetNamespace="http://schemas.aptilo.com/account/provisioning">
+
+	<xs:import namespace="http://schemas.aptilo.com/common" schemaLocation="common.xsd" />
+
+	<!-- CREATE ACCOUNT REQUEST -->
+	<xs:element name="createAccountRequest" type="tns:createAccountRequestType" />
+	<xs:element name="createAccountResponse" type="tns:createAccountResponseType" />
+	<xs:complexType name="createAccountRequestType">
+		<xs:sequence>
+			<xs:element name="account" type="tns:createAccountType" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="accountType" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="createAccountResponseType">
+		<xs:sequence>
+			<xs:element name="result" type="apc:responseDetailType" maxOccurs="1" minOccurs="1" />
+			<xs:element name="details" type="apc:responseDetailsType" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- UPDATE ACCOUNT REQUEST -->
+	<xs:element name="updateAccountRequest" type="tns:updateAccountRequestType" />
+	<xs:element name="updateAccountResponse" type="tns:updateAccountResponseType" />
+	<xs:complexType name="updateAccountRequestType">
+		<xs:sequence>
+			<xs:element name="account" type="tns:updateAccountType" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="accountType" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="updateAccountResponseType">
+		<xs:sequence>
+			<xs:element name="result" type="apc:responseDetailType" maxOccurs="1" minOccurs="1" />
+			<xs:element name="details" type="apc:responseDetailsType" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- DELETE ACCOUNT REQUEST -->
+	<xs:element name="deleteAccountRequest" type="tns:deleteAccountRequestType" />
+	<xs:element name="deleteAccountResponse" type="tns:deleteAccountResponseType" />
+	<xs:complexType name="deleteAccountRequestType">
+		<xs:sequence>
+			<xs:element name="query" type="tns:identifyAccountType" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="accountType" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="deleteAccountResponseType">
+		<xs:sequence>
+			<xs:element name="result" type="apc:responseDetailType" maxOccurs="1" minOccurs="1" />
+			<xs:element name="details" type="apc:responseDetailsType" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- GET ACCOUNT REQUEST -->
+	<xs:element name="getAccountRequest" type="tns:getAccountRequestType" />
+	<xs:element name="getAccountResponse" type="tns:getAccountResponseType" />
+	<xs:complexType name="getAccountRequestType">
+		<xs:sequence>
+			<xs:element name="queries" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="query" type="tns:retrieveAccountType" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="accountType" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="getAccountResponseType">
+		<xs:sequence>
+			<xs:element name="result" type="apc:responseDetailType" maxOccurs="1" minOccurs="1" />
+			<xs:element name="details" type="apc:responseDetailsType" maxOccurs="1" minOccurs="0" />
+			<xs:element name="responses" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="response" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="parameter" type="tns:parameterType" maxOccurs="unbounded" minOccurs="0" />
+									<xs:element name="group" type="tns:groupParametersType" maxOccurs="unbounded" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- IDENTIFY/RETRIEVE/UPDATE ACCOUNT TYPE -->
+	<xs:complexType name="identifyAccountType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="id" type="tns:idType" />
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="reference" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="retrieveAccountType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="id" type="tns:idType" />
+			</xs:choice>
+                        <xs:element name="parameters" type="tns:retrieveParametersType" />
+		</xs:sequence>
+		<xs:attribute name="reference" type="xs:string" />
+		<xs:attribute name="limit" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="updateAccountType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="id" type="tns:idType" />
+			</xs:choice>
+			<xs:element name="parameters" type="tns:updateParametersType" />
+		</xs:sequence>
+		<xs:attribute name="reference" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="createAccountType">
+		<xs:sequence>
+			<xs:element name="parameters" type="tns:createParametersType" />
+		</xs:sequence>
+		<xs:attribute name="reference" type="xs:string" />
+	</xs:complexType>
+
+
+	<!-- PARAMETERS -->
+	<xs:complexType name="parametersType">
+		<xs:sequence>
+			<xs:element name="parameter" type="tns:parameterType" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="groupParametersType">
+		<xs:sequence>
+			<xs:element name="parameter" type="tns:parameterType" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="updateGroupParametersType">
+		<xs:sequence>
+			<xs:element name="parameter" type="tns:updateParameterType" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+	</xs:complexType>
+
+        <xs:complexType name="retrieveParametersType">
+		<xs:sequence>
+			<xs:element name="parameter" type="tns:parameterType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="createParametersType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="parameter" type="tns:createParameterType" maxOccurs="unbounded" />
+				<xs:element name="group" type="tns:groupParametersType" maxOccurs="unbounded" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="updateParametersType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="parameter" type="tns:updateParameterType" maxOccurs="unbounded" />
+				<xs:element name="group" type="tns:updateGroupParametersType" maxOccurs="unbounded" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="idType">
+		<xs:sequence>
+			<xs:element name="parameter" type="tns:parameterType" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="parameterType">
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="createParameterType">
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="value" type="xs:string" />
+		<xs:attribute name="random" type="xs:string" minOccurs="0"/>
+		<xs:attribute name="copy" type="xs:string" minOccurs="0"/>
+	</xs:complexType>
+
+
+	<xs:complexType name="updateParameterType">
+		<xs:attribute name="operation" type="tns:operationType" />
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="value" type="xs:string" />
+	</xs:complexType>
+
+	<xs:simpleType name="operationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="add" />
+			<xs:enumeration value="update" />
+			<xs:enumeration value="delete" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+</xs:schema>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div ng-include="header"></div>
+	<section id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="he2 section-title text-center wow fadeInDown">Access Code <span>Generation complete</span></h2>
+                <p class="text-center wow fadeInDown">The requested Access Codes have been successfully generated. Please click the below link to download the access codes file.</p>
+            </div>
+            <div class="row valign col-sm-offset-2" style="margin-bottom: 40px;">
+                <div class="col-sm-10" style="color: #000;padding: 25px 0px 0px;">
+               	<div class="box" ng-controller="ACGenerationCtrl">
+               	   <div class="text-center">
+                      <h4 class="he4 media-heading">Generated Access codes and usability</h4>
+                    </div>
+                    <div align="left">
+                       <span class=title1> &gt;&gt; </span>
+						<a ng-click="downloadPdf()" style="color: #fff;">Download PDF</a><br>
+						<span class=title1> &gt;&gt; </span>
+						<a style="color: #fff;" ng-csv="getArray" csv-header="getHeader" filename="{{ filename }}.csv" field-separator="{{separator}}" lazy-load="true" decimal-separator="{{decimalSeparator}}">Download CSV</a>
+						<br><br>
+						Be aware that each Internet Access Code can only be used once and therefore use the following process.
+						<br><br>
+						1.       Download the PDF or CSV file
+						<br>
+						2.       Print the file
+						<br>
+						3.       Delete the file
+						<br>
+						4.       Distribute the printed Internet Access Codes to appropriate staff
+						<br><br>
+						Go back to generate more <a href="" ng-click="click('/createAC')" style="color: #fff;">Access Codes</a>.
+					</div>
+				</div>
+              </div>
+            </div>
+        </div>
+    </section><!-- /#features -->
+    <div ng-include="footer"></div>
+</body>
+</html>

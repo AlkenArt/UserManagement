@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://schemas.aptilo.com/config/accounts" targetNamespace="http://schemas.aptilo.com/config/accounts">
+
+	<xs:element name="config" type="tns:configType" />
+
+	<xs:complexType name="configType">
+		<xs:sequence>
+			<xs:element name="accounts" type="tns:accountsType" maxOccurs="1" minOccurs="0" />
+			<xs:element name="sessionHistoryStores" type="tns:historyStoresType" maxOccurs="1" minOccurs="0" />
+			<xs:element name="eventHistoryStores" type="tns:historyStoresType" maxOccurs="1" minOccurs="0" />
+			<xs:element name="userTraces" type="tns:userTraceType" maxOccurs="1" minOccurs="0" />
+			<xs:element name="matchFilters" type="tns:matchFiltersType" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="historyStoresType">
+		<xs:sequence>
+			<xs:element name="store" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="name" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="userTraceType">
+		<xs:sequence>
+			<xs:element name="trace" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:int" />
+					<xs:attribute name="name" type="xs:string" />
+					<xs:attribute name="filter" type="xs:int" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="matchFiltersType">
+		<xs:sequence>
+			<xs:element name="node" maxOccurs="unbounded" minOccurs="0">
+				<xs:complexType>
+					<xs:attribute name="id" type="xs:int" />
+					<xs:attribute name="ancestry" type="xs:string" />
+					<xs:attribute name="operator" type="xs:string" />
+					<xs:attribute name="parameter" type="xs:string" />
+					<xs:attribute name="condition" type="xs:string" />
+					<xs:attribute name="match_order" type="xs:int" />
+					<xs:attribute name="external_match_filter_id" type="xs:int" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="accountsType">
+		<xs:sequence>
+			<xs:element name="account" type="tns:accountType" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="accountType">
+		<xs:attribute name="accountType" type="xs:string" />
+		<xs:attribute name="name" type="xs:string" />
+		<xs:attribute name="type" type="xs:string" />
+		<xs:attribute name="mandatory" type="xs:boolean" />
+		<xs:attribute name="unique" type="xs:boolean" />
+		<xs:attribute name="regexp" type="xs:string" />
+		<xs:attribute name="le" type="xs:long" />
+		<xs:attribute name="ge" type="xs:long" />
+	</xs:complexType>
+</xs:schema>

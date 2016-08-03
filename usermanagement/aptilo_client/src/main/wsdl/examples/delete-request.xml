@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://schemas.aptilo.com/account/provisioning">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prov:deleteAccountRequest accountType="Aptilo-WiFi-Account-DB">
+         <prov:query reference="Delete Example">
+            <prov:id>
+               <prov:parameter name="User-Name" value="46705550001" />
+            </prov:id>
+         </prov:query>
+      </prov:deleteAccountRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

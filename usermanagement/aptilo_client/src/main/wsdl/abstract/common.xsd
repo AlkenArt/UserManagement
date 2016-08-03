@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://schemas.aptilo.com/common" targetNamespace="http://schemas.aptilo.com/common">
+
+	<!-- RESPONSE -->
+	<xs:complexType name="responseDetailsType">
+		<xs:sequence>
+			<xs:element name="detail" type="tns:responseDetailType" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="responseDetailType">
+		<xs:attribute name="status" type="tns:statusType" />
+		<xs:attribute name="code" type="xs:string" />
+		<xs:attribute name="message" type="xs:string" />
+		<xs:attribute name="reference" type="xs:string" />
+	</xs:complexType>
+	<xs:simpleType name="statusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="success" />
+			<xs:enumeration value="failure" />
+			<xs:enumeration value="error" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
